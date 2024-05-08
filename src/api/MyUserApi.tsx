@@ -17,6 +17,7 @@ export const useGetMyUser = () => {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
       },
+      credentials: "include",
     });
 
     if (!response.ok) {
