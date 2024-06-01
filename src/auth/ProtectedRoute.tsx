@@ -1,18 +1,24 @@
+import Layout from "@/layouts/Layout";
+import HomePage from "@/pages/HomePage";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 const ProtectedRoute = () => {
-  const { isAuthenticated,isLoading } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
   // return isAuthenticated ? <Outlet /> : <Navigate to={"/"} replace />;
-  if(isLoading){
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  if(isAuthenticated){
-    return <Outlet/>
+  if (isAuthenticated) {
+    return <Outlet />;
   }
 
-  return <Navigate to={"/"} replace />
+  return (
+    <Layout>
+      <HomePage />
+    </Layout>
+  );
 };
 
 export default ProtectedRoute;
